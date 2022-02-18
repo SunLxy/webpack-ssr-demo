@@ -13,7 +13,7 @@ app.all("*", (req, res) => {
   if (urls === "/") {
     urls = "/home"
   }
-  const html = render({ url: { path: urls } })
+  const html = render({ url: urls })
   const neeHtmls = htmlTemp.replace("__APP__", html)
   res.send(neeHtmls)
 })

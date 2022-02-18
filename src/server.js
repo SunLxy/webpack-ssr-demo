@@ -6,7 +6,7 @@ import App from "./ssr"
 
 const render = (props = {}) => {
   const html = renderToString(
-    <StaticRouter location={props.url.path}>
+    <StaticRouter location={props.url}>
       <App {...props} />
     </StaticRouter>
   );

@@ -11,7 +11,10 @@ module.exports = {
     filename: "ssr.js",
     libraryTarget: "commonjs2"
   },
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals(),
+
+  ],
   module: {
     rules: [
       {
