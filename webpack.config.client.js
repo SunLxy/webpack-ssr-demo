@@ -10,9 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "bundle.js",
-    publicPath: "/public/",
-    pathinfo: true,
-    devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
+    publicPath: "/public/"
   },
   module: {
     rules: [
@@ -22,9 +20,6 @@ module.exports = {
         exclude: /node_moudles/
       }
     ]
-  },
-  resolve: {
-    extensions: ['.jsx', '.js', '.json'],
   },
   plugins: [
     new CleanWebpackPlugin(),//清理dist文件夹
@@ -36,9 +31,7 @@ module.exports = {
       template: path.resolve(__dirname, "./public/index.html"),
     })
   ],
-  devServer: {
-    port: 3000,
-    hot: true,
-    overlay: true
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json']
   }
 }

@@ -26,7 +26,8 @@
   "scripts": {
     "build:client": "webpack --config ./webpack.config.client.js",
     "build:server": "webpack --config ./webpack.config.server.js",
-    "build": "yarn build:client && yarn build:server",
+    "build:": "yarn build:client && yarn build:server",
+    "build": "node ./script/build.js",
     "dev": "webpack-dev-server --config ./webpack.config.client.js",
     "start": "nodemon ./server/index.js"
   }

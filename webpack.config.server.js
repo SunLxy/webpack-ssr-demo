@@ -12,9 +12,6 @@ module.exports = {
     libraryTarget: "commonjs2"
   },
   externals: [nodeExternals()],
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
-  },
   module: {
     rules: [
       {
@@ -23,5 +20,8 @@ module.exports = {
         exclude: /node_moudles/
       }
     ]
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json']
   }
 }
