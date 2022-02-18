@@ -1,11 +1,9 @@
 import React from "react";
 import { Route, Routes, Outlet, Link } from "react-router-dom";
-import { StaticRouter } from "react-router-dom/server";
-import { renderToString } from "react-dom/server";
 import Home from "./Home"
 import About from "./About"
 
-const Nav = (props) => {
+const Nav = () => {
   return <div>
     <Link style={{ margin: "0px 10px" }} to="/home">home</Link>
     <Link style={{ margin: "0px 10px" }} to="/about">about</Link>
@@ -13,7 +11,7 @@ const Nav = (props) => {
   </div>
 }
 
-const App = () => {
+export default () => {
   return <div>
     <React.StrictMode>
       <Routes>
@@ -30,15 +28,3 @@ const App = () => {
   </div >;
 }
 
-const render = (props = {}) => {
-  const html = renderToString(
-    <StaticRouter location={props.url.path}>
-      <App {...props} />
-    </StaticRouter>
-  );
-  return {
-    html,
-  };
-};
-
-export { render }
