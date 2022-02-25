@@ -18,7 +18,6 @@ function compile(config) {
   });
 }
 const build = async () => {
-
   try {
     const client = await compile(clientConfig)
     if (client) {
@@ -32,18 +31,18 @@ const build = async () => {
       });
       console.log('client', message)
     }
-    const server = await compile(serverConfig)
-    if (server) {
-      message = server.toString({
-        colors: true,
-        children: false,
-        chunks: false,
-        modules: false,
-        moduleTrace: false,
-        warningsFilter: () => true,
-      });
-      console.log('server', message)
-    }
+    // const server = await compile(serverConfig)
+    // if (server) {
+    //   message = server.toString({
+    //     colors: true,
+    //     children: false,
+    //     chunks: false,
+    //     modules: false,
+    //     moduleTrace: false,
+    //     warningsFilter: () => true,
+    //   });
+    //   console.log('server', message)
+    // }
   }
   catch (err) {
     console.log(err)

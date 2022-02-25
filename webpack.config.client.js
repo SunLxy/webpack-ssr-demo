@@ -2,6 +2,7 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const AssetsPlugin = require('assets-webpack-plugin');
+const { DemoWebpackPlugin } = require("./webpack.plugin.demo")
 
 module.exports = {
   mode: "production",
@@ -10,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "bundle.js",
-    publicPath: "/public/"
+    publicPath: "/public"
   },
   module: {
     rules: [
@@ -29,9 +30,12 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./public/index.html"),
-    })
+      favicon: path.resolve('./public/favicon.ico')
+    }),
+    new DemoWebpackPlugin()
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
-  }
+  },
+  stats: { children: true }
 }
