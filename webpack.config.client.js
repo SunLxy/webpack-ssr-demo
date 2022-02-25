@@ -2,7 +2,7 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const AssetsPlugin = require('assets-webpack-plugin');
-const { DemoWebpackPlugin } = require("./webpack.plugin.demo")
+const { SSRWebpackPlugin } = require("./webpack.plugin.ssr")
 
 module.exports = {
   mode: "production",
@@ -32,7 +32,7 @@ module.exports = {
       template: path.resolve(__dirname, "./public/index.html"),
       favicon: path.resolve('./public/favicon.ico')
     }),
-    new DemoWebpackPlugin()
+    new SSRWebpackPlugin()
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']

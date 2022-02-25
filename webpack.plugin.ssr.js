@@ -7,11 +7,11 @@ const nodeExternals = require('webpack-node-externals');
  * 2. 对入口文件进行添加
  * **/
 
-class DemoWebpackPlugin {
+class SSRWebpackPlugin {
   constructor() { }
   apply(compiler) {
-    compiler.hooks.thisCompilation.tap("DemoWebpackPlugin", (compilation) => {
-      const childCompiler = compilation.createChildCompiler("DemoWebpackPlugin", {
+    compiler.hooks.thisCompilation.tap("SSRWebpackPlugin", (compilation) => {
+      const childCompiler = compilation.createChildCompiler("SSRWebpackPlugin", {
         path: path.join(process.cwd(), "/dist"),
         filename: "ssr.js",
         library: {
@@ -34,4 +34,4 @@ class DemoWebpackPlugin {
   }
 }
 
-module.exports = { DemoWebpackPlugin }
+module.exports = { SSRWebpackPlugin }
