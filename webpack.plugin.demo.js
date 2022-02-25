@@ -27,6 +27,7 @@ class DemoWebpackPlugin {
         // 文件加载
         if (err) {
           console.log(err)
+          return;
         }
       })
     })
