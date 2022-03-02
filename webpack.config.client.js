@@ -10,9 +10,9 @@ module.exports = {
   // 入口文件
   entry: path.resolve(__dirname, "./src/client.js"),
   output: {
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "./build"),
     filename: "bundle.js",
-    publicPath: "/public"
+    publicPath: "/assets"
   },
   module: {
     rules: [
@@ -20,20 +20,27 @@ module.exports = {
         test: /\.(js|jsx)$/,
         loader: "babel-loader",
         exclude: /node_moudles/
-      }
+      },
+      {
+        test: /\.(css)$/,
+        loader: "css-loader",
+        exclude: /node_moudles/
+      },
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),//清理dist文件夹
+    new CleanWebpackPlugin(),//清理build文件夹
     new AssetsPlugin({
-      path: path.resolve(__dirname, "./dist"),
+      path: path.resolve(__dirname, "./build"),
       filename: 'assets.json',
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./public/index.html"),
       favicon: path.resolve('./public/favicon.ico')
     }),
-    new SSRWebpackPlugin(),
+    new SSRWebpackPlugin({
+      entry: path.join(process.cwd(), "src/serverIndex.js")
+    }),
     new SimpleProgressWebpackPlugin({
       format: 'compact',
       name: 'Client',

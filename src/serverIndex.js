@@ -2,11 +2,10 @@ const express = require("express");
 const fs = require("fs")
 const app = express();
 const path = require("path")
-const render = require("../build/ssr.js").default;
+const render = require("./server").default;
+const htmlTemp = fs.readFileSync(path.join(process.cwd(), "./build/index.html"), "utf-8")
 
-const htmlTemp = fs.readFileSync(path.join(__dirname, "./../build/index.html"), "utf-8")
-
-app.use("/public", express.static(path.join(__dirname, "./../build")))
+app.use("assets", express.static(path.join(process.cwd(), "./build")))
 
 app.all("*", (req, res) => {
   let urls = req.url

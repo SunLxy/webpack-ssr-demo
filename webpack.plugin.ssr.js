@@ -8,27 +8,30 @@ const nodeExternals = require('webpack-node-externals');
  * **/
 
 class SSRWebpackPlugin {
-  constructor() { }
+  constructor() {
+
+  }
   apply(compiler) {
     compiler.hooks.thisCompilation.tap("SSRWebpackPlugin", (compilation) => {
       const childCompiler = compilation.createChildCompiler("SSRWebpackPlugin", {
-        path: path.join(process.cwd(), "/dist"),
+        path: path.join(process.cwd(), "./build"),
         filename: "ssr.js",
         library: {
           type: "commonjs2"
-        }
+        },
       }, [])
-      new webpack.library.EnableLibraryPlugin("commonjs2").apply(childCompiler);
+
+      childCompiler.options.target = "node"
+      childCompiler.options.output.library.type = "commonjs2"
       new webpack.optimize.LimitChunkCountPlugin({ "maxChunks": 1 }).apply(childCompiler);
-      new webpack.EntryPlugin(compilation.compiler.context, path.join(process.cwd(), "src/server.js")).apply(childCompiler)
-      new webpack.ExternalsPlugin("noode", [nodeExternals()]).apply(childCompiler)
+      new webpack.EntryPlugin(compilation.compiler.context, path.join(process.cwd(), "src/serverIndex.js")).apply(childCompiler)
+      new webpack.ExternalsPlugin(null, [nodeExternals()]).apply(childCompiler)
+      new webpack.node.NodeTargetPlugin().apply(childCompiler);
 
-
-      childCompiler.runAsChild((err, entries, compilation) => {
-        // 文件加载
+      childCompiler.runAsChild((err, entries, ccompilation) => {
         if (err) {
           console.log(err)
-          return;
+          process.exit(1)
         }
       })
     })

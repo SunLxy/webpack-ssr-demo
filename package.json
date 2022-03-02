@@ -13,12 +13,16 @@
     "chalk": "^5.0.0",
     "clean-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "kkt": "^7.1.5",
+    "mini-css-extract-plugin": "^2.5.3",
+    "wangeditor-for-react": "1.5.3",
     "webpack": "^5.69.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "css-loader": "^6.6.0",
     "progress-bar-webpack-plugin": "^2.1.0",
     "react": "^17.0.2",
     "react-dom": "17.0.2",
@@ -29,9 +33,23 @@
   "scripts": {
     "build:client": "webpack --config ./webpack.config.client.js",
     "build:server": "webpack --config ./webpack.config.server.js",
+    "build:servers": "webpack --config ./webpack.config.servers.js",
     "build:": "yarn build:client && yarn build:server",
     "build": "node ./script/build.js",
+    "build:k": "kkt build",
     "dev": "webpack-dev-server --config ./webpack.config.client.js",
     "start": "nodemon ./server/index.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
