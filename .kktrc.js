@@ -1,5 +1,5 @@
-const { SSRWebpackPlugin } = require("./webpack.plugin.ssr2")
-// const { SSRWebpackPlugin } = require("./webpack.plugin.ssr")
+// const { SSRWebpackPlugin } = require("./webpack.plugin.ssr2")
+const { SSRWebpackPlugin } = require("./webpack.plugin.ssr")
 const Path = require("path")
 const webpack = require('webpack');
 
