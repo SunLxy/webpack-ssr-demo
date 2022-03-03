@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const AssetsPlugin = require('assets-webpack-plugin');
 const { SSRWebpackPlugin } = require("./webpack.plugin.ssr")
 const SimpleProgressWebpackPlugin = require('@kkt/simple-progress-webpack-plugin');
-
+const webpack = require("webpack")
 module.exports = {
   mode: "production",
   // 入口文件
@@ -30,9 +30,12 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),//清理build文件夹
+    new webpack.DefinePlugin({
+      assetManifestPath: JSON.stringify(path.resolve(process.cwd(), "build/asset-manifest.json"))
+    }),
     new AssetsPlugin({
       path: path.resolve(__dirname, "./build"),
-      filename: 'assets.json',
+      filename: 'asset-manifest.json',
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./public/index.html"),
@@ -44,7 +47,8 @@ module.exports = {
     new SimpleProgressWebpackPlugin({
       format: 'compact',
       name: 'Client',
-    })
+    }),
+
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']

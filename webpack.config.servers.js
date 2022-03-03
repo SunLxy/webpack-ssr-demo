@@ -1,5 +1,6 @@
 const path = require("path")
 const nodeExternals = require('webpack-node-externals');
+const webpack = require("webpack")
 
 module.exports = {
   mode: "production",
@@ -27,6 +28,11 @@ module.exports = {
       // }
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      Asset_Manifest_Path: JSON.stringify(path.resolve(process.cwd(), "build/asset-manifest.json"))
+    }),
+  ],
   resolve: {
     modules: ['node_modules'],
     extensions: ['.ts', '.tsx', '.js', '.json']

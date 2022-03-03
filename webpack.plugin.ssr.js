@@ -19,10 +19,12 @@ class SSRWebpackPlugin {
         library: {
           type: "commonjs2"
         },
+        libraryTarget: "commonjs2"
       }, [])
-
       childCompiler.options.target = "node"
       childCompiler.options.output.library.type = "commonjs2"
+
+
       new webpack.optimize.LimitChunkCountPlugin({ "maxChunks": 1 }).apply(childCompiler);
       new webpack.EntryPlugin(compilation.compiler.context, path.join(process.cwd(), "src/serverIndex.js")).apply(childCompiler)
       new webpack.ExternalsPlugin(null, [nodeExternals()]).apply(childCompiler)
